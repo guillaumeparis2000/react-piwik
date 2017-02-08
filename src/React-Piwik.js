@@ -2,7 +2,6 @@ export default class Piwik {
   constructor(opts) {
     const options = opts;
 
-    options.trackErrors = (options.trackErrors !== undefined) ? options.trackErrors : false;
     options.enableLinkTracking = (options.enableLinkTracking !== undefined) ?
                                     options.enableLinkTracking : true;
     options.trackDocumentTitle = (options.trackDocumentTitle !== undefined) ?
