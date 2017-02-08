@@ -3,6 +3,15 @@
 This library is inspired by [piwik-react-router](https://github.com/joernroeder/piwik-react-router) for the react-router part
 and publish a public method to track custom events.
 
+## Installation
+```sh
+npm install --save react-piwik
+```
+or
+```sh
+yarn add react-piwik
+```
+
 ## Usage
 
 To use it you might create an instance of React-Piwik with the piwik server url and siteID and connect it to your history:
