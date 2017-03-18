@@ -30,8 +30,23 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root'),
 );
+```
 
-[...]
+If you want to add (push) more piwik options you can do using push after you've setup the initial tracker. Also, if you want to track the first page view be sure to do a push:
+
+```js
+ReactPiwik.push(['enableHeartBeatTimer'])
+ReactPiwik.push(['setUserId', 'userID])
+
+// track the initial pageview
+ReactPiwik.push(['trackPageView'])
+```
+
+On any page of your app you can track an event using push:
+
+```js
+import ReactPiwik from 'react-piwik';
+
 ReactPiwik.push(['yourEvent', '123']);
 ```
 
@@ -39,7 +54,7 @@ ReactPiwik.push(['yourEvent', '123']);
 ### enableLinkTracking: true
 Link tracking to track outgoing and download links is enabled by default.
 
-###updateDocumentTitle: true
+### updateDocumentTitle: true
 Updates the document title before adding a new page view as the title may changed during the route rendering.
 
 ## API
