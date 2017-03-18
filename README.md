@@ -54,7 +54,7 @@ ReactPiwik.push(['yourEvent', '123']);
 ### enableLinkTracking: true
 Link tracking to track outgoing and download links is enabled by default.
 
-### updateDocumentTitle: true
+### trackDocumentTitle: true
 Updates the document title before adding a new page view as the title may changed during the route rendering.
 
 ## API
