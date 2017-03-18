@@ -27,6 +27,8 @@ export default class Piwik {
 
     window._paq = window._paq || []; // eslint-disable-line  no-underscore-dangle
 
+    Piwik.push(['trackPageView']);
+    
     Piwik.push(['setSiteId', this.options.siteId]);
     Piwik.push(['setTrackerUrl', `${url}piwik.php`]);
 
