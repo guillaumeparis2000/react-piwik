@@ -36,7 +36,7 @@ If you want to add (push) more piwik options you can do using push after you've 
 
 ```js
 ReactPiwik.push(['enableHeartBeatTimer'])
-ReactPiwik.push(['setUserId', 'userID])
+ReactPiwik.push(['setUserId', 'userId'])
 
 // track the initial pageview
 ReactPiwik.push(['trackPageView'])
