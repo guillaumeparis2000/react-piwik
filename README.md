@@ -47,7 +47,7 @@ On any page of your app you can track an event using push:
 ```js
 import ReactPiwik from 'react-piwik';
 
-ReactPiwik.push(['yourEvent', '123']);
+ReactPiwik.push(['trackEvent', 'eventCategory', 'yourEvent']);
 ```
 
 ## Options
