@@ -74,7 +74,7 @@ export default class Piwik {
   }
 
   track(loc) {
-    const currentPath = loc.path || (loc.pathname + loc.search);
+    const currentPath = loc.path || (loc.pathname + loc.search).replace(/^\//, '');
 
     if (this.previousPath === currentPath) {
       return;
