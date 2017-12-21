@@ -56,6 +56,8 @@ export default class Piwik {
   }
 
   connectToHistory(history) {
+    const prevLoc = history.getCurrentLocation();
+    this.previousPath = prevLoc.path || (prevLoc.pathname + prevLoc.search).replace(/^\//, '');
     this.unlistenFromHistory = history.listen((loc) => {
       this.track(loc);
     });
@@ -84,7 +86,10 @@ export default class Piwik {
       Piwik.push(['setDocumentTitle', document.title]);
     }
 
-    Piwik.push(['setCustomUrl', currentPath]);
+    if (this.previousPath) {
+      Piwik.push(['setReferrerUrl', `${window.location.origin}/${this.previousPath}`]);
+    }
+    Piwik.push(['setCustomUrl', `${window.location.origin}/${currentPath}`]);
     Piwik.push(['trackPageView']);
 
     this.previousPath = currentPath;
