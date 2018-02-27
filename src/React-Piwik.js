@@ -56,7 +56,7 @@ export default class Piwik {
   }
 
   connectToHistory(history) {
-    const prevLoc = history.getCurrentLocation();
+    const prevLoc = (typeof history.getCurrentLocation === 'undefined') ? history.location : history.getCurrentLocation();
     this.previousPath = prevLoc.path || (prevLoc.pathname + prevLoc.search).replace(/^\//, '');
     this.unlistenFromHistory = history.listen((loc) => {
       this.track(loc);
