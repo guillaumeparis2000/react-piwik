@@ -66,3 +66,10 @@ Adds a listener to the passed in history and triggers track(location) whenever t
 
 ### disconnectFromHistory()
 Disconnects Piwik from a previous connected history. Returns whether it could successfully disconnect.
+
+## Contributing
+
+1. Fork the repo
+2. Make changes to `src/React-Piwik.js`
+3. run `npm i && npm run build`
+4. Commit changes and make pull request
