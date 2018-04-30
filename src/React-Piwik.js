@@ -17,31 +17,33 @@ export default class Piwik {
   }
 
   initPiwik() {
-    let url = this.options.url;
+    if (typeof window !== 'undefined') {
+      let url = this.options.url;
 
-    if (url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1) {
-      url = `${url}/`;
-    } else {
-      url = ((document.location.protocol === 'https:') ? `https://${url}/` : `http://${url}/`);
+      if (url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1) {
+        url = `${url}/`;
+      } else {
+        url = ((document.location.protocol === 'https:') ? `https://${url}/` : `http://${url}/`);
+      }
+
+      window._paq = window._paq || []; // eslint-disable-line  no-underscore-dangle
+
+      Piwik.push(['setSiteId', this.options.siteId]);
+      Piwik.push(['setTrackerUrl', `${url}piwik.php`]);
+
+      if (this.options.enableLinkTracking) {
+        Piwik.push(['enableLinkTracking']);
+      }
+
+      const scriptElement = document.createElement('script');
+      const refElement = document.getElementsByTagName('script')[0];
+
+      scriptElement.type = 'text/javascript';
+      scriptElement.defer = true;
+      scriptElement.async = true;
+      scriptElement.src = `${url}piwik.js`;
+      refElement.parentNode.insertBefore(scriptElement, refElement);
     }
-
-    window._paq = window._paq || []; // eslint-disable-line  no-underscore-dangle
-
-    Piwik.push(['setSiteId', this.options.siteId]);
-    Piwik.push(['setTrackerUrl', `${url}piwik.php`]);
-
-    if (this.options.enableLinkTracking) {
-      Piwik.push(['enableLinkTracking']);
-    }
-
-    const scriptElement = document.createElement('script');
-    const refElement = document.getElementsByTagName('script')[0];
-
-    scriptElement.type = 'text/javascript';
-    scriptElement.defer = true;
-    scriptElement.async = true;
-    scriptElement.src = `${url}piwik.js`;
-    refElement.parentNode.insertBefore(scriptElement, refElement);
 
     return {
       push: this.push,
@@ -76,6 +78,9 @@ export default class Piwik {
   }
 
   track(loc) {
+    if (typeof window === 'undefined') {
+      return;
+    }
     const currentPath = loc.path || (loc.pathname + loc.search).replace(/^\//, '');
 
     if (this.previousPath === currentPath) {
