@@ -33,7 +33,7 @@ export default class Piwik {
       window._paq = window._paq || []; // eslint-disable-line  no-underscore-dangle
 
       Piwik.push(['setSiteId', this.options.siteId]);
-      Piwik.push(['setTrackerUrl', `${url+this.options.phpFilename}`]);
+      Piwik.push(['setTrackerUrl', `${url + this.options.phpFilename}`]);
 
       if (this.options.enableLinkTracking) {
         Piwik.push(['enableLinkTracking']);
@@ -45,7 +45,7 @@ export default class Piwik {
       scriptElement.type = 'text/javascript';
       scriptElement.defer = true;
       scriptElement.async = true;
-      scriptElement.src = `${url+this.options.jsFilename}`;
+      scriptElement.src = `${url + this.options.jsFilename}`;
       refElement.parentNode.insertBefore(scriptElement, refElement);
     }
 
