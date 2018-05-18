@@ -6,6 +6,10 @@ export default class Piwik {
                                     options.enableLinkTracking : true;
     options.trackDocumentTitle = (options.trackDocumentTitle !== undefined) ?
                                     options.trackDocumentTitle : true;
+    options.jsFilename = (options.jsFilename !== undefined) ?
+                                    options.jsFilename : 'piwik.js';
+    options.phpFilename = (options.phpFilename !== undefined) ?
+                                    options.phpFilename : 'piwik.php';
 
     this.options = options;
 
@@ -29,7 +33,7 @@ export default class Piwik {
       window._paq = window._paq || []; // eslint-disable-line  no-underscore-dangle
 
       Piwik.push(['setSiteId', this.options.siteId]);
-      Piwik.push(['setTrackerUrl', `${url}piwik.php`]);
+      Piwik.push(['setTrackerUrl', `${url+this.options.phpFilename}`]);
 
       if (this.options.enableLinkTracking) {
         Piwik.push(['enableLinkTracking']);
@@ -41,7 +45,7 @@ export default class Piwik {
       scriptElement.type = 'text/javascript';
       scriptElement.defer = true;
       scriptElement.async = true;
-      scriptElement.src = `${url}piwik.js`;
+      scriptElement.src = `${url+this.options.jsFilename}`;
       refElement.parentNode.insertBefore(scriptElement, refElement);
     }
 
