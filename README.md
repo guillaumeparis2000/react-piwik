@@ -32,6 +32,17 @@ ReactDOM.render(
 );
 ```
 
+You can optionally pass custom filenames if you have renamed your tracker urls (to prevent browser/adblock from blocking piwik)  :
+```js
+const piwik = new ReactPiwik({
+  url: 'your-piwik-server-url.com',
+  siteId: 12,
+  trackErrors: true,
+  jsFilename: 'obfuscated-name.js',
+  phpFilename: 'obfuscated-name.php'
+});
+```
+
 If you want to add (push) more piwik options you can do using push after you've setup the initial tracker. Also, if you want to track the first page view be sure to do a push:
 
 ```js
