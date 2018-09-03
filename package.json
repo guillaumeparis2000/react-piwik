@@ -1,6 +1,6 @@
 {
   "name": "react-piwik",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "Library that allow to connect piwik with the react-router and track custom events",
   "main": "lib/React-Piwik.js",
   "scripts": {
