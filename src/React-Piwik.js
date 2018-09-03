@@ -45,7 +45,14 @@ export default class Piwik {
       scriptElement.type = 'text/javascript';
       scriptElement.defer = true;
       scriptElement.async = true;
-      scriptElement.src = `${url + this.options.jsFilename}`;
+
+      let jsFilename = this.options.jsFilename;
+
+      if (jsFilename.indexOf('http://') !== 0 && jsFilename.indexOf('https://') !== 0) {
+        jsFilename = url + jsFilename;
+      }
+
+      scriptElement.src = jsFilename;
       refElement.parentNode.insertBefore(scriptElement, refElement);
     }
 
