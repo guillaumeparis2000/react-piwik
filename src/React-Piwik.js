@@ -88,6 +88,13 @@ export default class Piwik {
     return false;
   }
 
+  getBasePath() {
+    if (typeof this.options.pathBasename !== 'undefined') {
+      return `${window.location.origin}/${this.options.pathBasename}/`;
+    }
+    return `${window.location.origin}`;
+  }
+
   track(loc) {
     if (typeof window === 'undefined') {
       return;
@@ -103,9 +110,9 @@ export default class Piwik {
     }
 
     if (this.previousPath) {
-      Piwik.push(['setReferrerUrl', `${window.location.origin}/${this.previousPath}`]);
+      Piwik.push(['setReferrerUrl', `${this.getBasePath()}${this.previousPath}`]);
     }
-    Piwik.push(['setCustomUrl', `${window.location.origin}/${currentPath}`]);
+    Piwik.push(['setCustomUrl', `${this.getBasePath()}/${currentPath}`]);
     Piwik.push(['trackPageView']);
 
     this.previousPath = currentPath;
