@@ -92,7 +92,7 @@ export default class Piwik {
     if (typeof this.options.pathBasename !== 'undefined') {
       return `${window.location.origin}/${this.options.pathBasename}/`;
     }
-    return `${window.location.origin}`;
+    return `${window.location.origin}/`;
   }
 
   track(loc) {
@@ -112,7 +112,7 @@ export default class Piwik {
     if (this.previousPath) {
       Piwik.push(['setReferrerUrl', `${this.getBasePath()}${this.previousPath}`]);
     }
-    Piwik.push(['setCustomUrl', `${this.getBasePath()}/${currentPath}`]);
+    Piwik.push(['setCustomUrl', `${this.getBasePath()}${currentPath}`]);
     Piwik.push(['trackPageView']);
 
     this.previousPath = currentPath;
