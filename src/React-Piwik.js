@@ -53,7 +53,11 @@ export default class Piwik {
       }
 
       scriptElement.src = jsFilename;
-      refElement.parentNode.insertBefore(scriptElement, refElement);
+      if (refElement) {
+        refElement.parentNode.insertBefore(scriptElement, refElement);
+      } else {
+        document.getElementsByTagName('body')[0].appendChild(scriptElement);
+      }
     }
 
     return {
