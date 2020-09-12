@@ -13,7 +13,7 @@ interface History4 {
   location: Location;
 }
 type LooseHistory = {
-  listen(listener: (location: Location, ...unknownArgs: unknown[]) => void): void;
+  listen(listener: (location: Location, ...unknownArgs: unknown[]) => void): () => void;
 } & (History3 | History4);
 
 /**
