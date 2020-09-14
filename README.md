@@ -21,7 +21,6 @@ import ReactPiwik from 'react-piwik';
 const piwik = new ReactPiwik({
   url: 'your-piwik-server-url.com',
   siteId: 12,
-  trackErrors: true,
 });
 
 ReactDOM.render(
@@ -37,7 +36,6 @@ You can optionally pass custom filenames if you have renamed your tracker urls (
 const piwik = new ReactPiwik({
   url: 'your-piwik-server-url.com',
   siteId: 12,
-  trackErrors: true,
   jsFilename: 'obfuscated-name.js',
   phpFilename: 'obfuscated-name.php'
 });
