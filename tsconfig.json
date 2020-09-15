@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "strict": true
+  },
+  "include": [
+    "index.d.ts"
+  ]
+}
