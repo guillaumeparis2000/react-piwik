@@ -13,6 +13,8 @@ export default class Piwik {
 
     this.options = options;
 
+    this.previousPath = null;
+
     if (this.options.url === undefined || this.options.siteId === undefined) {
       throw new Error('PiwikTracker cannot be initialized! SiteId and url are mandatory.');
     }
@@ -69,8 +71,6 @@ export default class Piwik {
   }
 
   connectToHistory(history) {
-    const prevLoc = (typeof history.getCurrentLocation === 'undefined') ? history.location : history.getCurrentLocation();
-    this.previousPath = prevLoc.path || (prevLoc.pathname + prevLoc.search).replace(/^\//, '');
     this.unlistenFromHistory = history.listen((loc) => {
       this.track(loc);
     });
