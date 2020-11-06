@@ -23,9 +23,11 @@ const piwik = new ReactPiwik({
   siteId: 12,
 });
 
+const trackAtConnect = false;
+
 ReactDOM.render(
   <Provider store={store}>
-    <Router routes={routes} history={piwik.connectToHistory(history)} />
+    <Router routes={routes} history={piwik.connectToHistory(history, trackAtConnect)} />
   </Provider>,
   document.getElementById('root'),
 );
