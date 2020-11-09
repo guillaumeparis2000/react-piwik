@@ -70,10 +70,16 @@ export default class Piwik {
     window._paq.push(args); // eslint-disable-line  no-underscore-dangle
   }
 
-  connectToHistory(history) {
+  /**
+   * @param {History} history
+   * @param {Boolean} trackAtConnect
+   */
+  connectToHistory(history, trackAtConnect) {
     const initialLocation = (typeof history.getCurrentLocation === 'undefined') ? history.location : history.getCurrentLocation();
-    const initialPath = initialLocation.path || (initialLocation.pathname + initialLocation.search).replace(/^\//, '')
-    this.track(initialPath);
+    const initialPath = initialLocation.path || (initialLocation.pathname + initialLocation.search).replace(/^\//, '');
+    if (trackAtConnect) {
+      this.track(initialPath);
+    }
     this.unlistenFromHistory = history.listen((loc) => {
       this.track(loc);
     });

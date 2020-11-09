@@ -23,9 +23,11 @@ const piwik = new ReactPiwik({
   siteId: 12,
 });
 
+const trackAtConnect = false;
+
 ReactDOM.render(
   <Provider store={store}>
-    <Router routes={routes} history={piwik.connectToHistory(history)} />
+    <Router routes={routes} history={piwik.connectToHistory(history, trackAtConnect)} />
   </Provider>,
   document.getElementById('root'),
 );
@@ -70,8 +72,8 @@ Updates the document title before adding a new page view as the title may change
 ### push(args)
 Pushes the specified args to the Piwik tracker the same way as you're using the _paq.push(args); directly.
 
-### connectToHistory(history)
-Adds a listener to the passed in history and triggers track(location) whenever the history changes.
+### connectToHistory(history,trackAtConnect)
+Adds a listener to the passed in history and optionally triggers track(location) based on trackAtConnect whenever the history changes.
 
 ### disconnectFromHistory()
 Disconnects Piwik from a previous connected history. Returns whether it could successfully disconnect.
