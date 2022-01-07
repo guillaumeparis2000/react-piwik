@@ -81,7 +81,12 @@ export default class Piwik {
       this.track(initialPath);
     }
     this.unlistenFromHistory = history.listen((loc) => {
-      this.track(loc);
+      // History version 5 sendes update as a object
+      if(loc["location"] !== null) {
+        this.track(loc.location);
+      }else{
+        this.track(loc);
+      }
     });
 
     return history;
